@@ -32,6 +32,7 @@ app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "em
 app.get("/auth/google/callback", passport.authenticate("google", { session: false }),
   (req, res) => {
     const token = req.user.token;
+    console.log("Redirecting to:", `${process.env.FRONTEND_URL}/auth-success?token=${token}`);
     res.redirect(`${process.env.FRONTEND_URL}/auth-success?token=${token}`);
   }
 );
